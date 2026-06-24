@@ -63,7 +63,7 @@ def main():
 
     # Step 1: Load precomputed embeddings and candidate IDs
     logger.info("Loading precomputed embeddings...")
-    candidate_embeddings = np.load(EMBEDDINGS_FILE)
+    candidate_embeddings = np.load(EMBEDDINGS_FILE).astype(np.float32)
     logger.info(f"Embeddings shape: {candidate_embeddings.shape}")
 
     with open(IDS_FILE, "r", encoding="utf-8") as f:

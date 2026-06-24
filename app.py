@@ -253,7 +253,7 @@ def load_model():
 @st.cache_data
 def load_embeddings():
     """Load precomputed embeddings and candidate IDs."""
-    embeddings = np.load(EMBEDDINGS_FILE)
+    embeddings = np.load(EMBEDDINGS_FILE).astype(np.float32)
     with open(IDS_FILE, "r", encoding="utf-8") as f:
         ids = json.load(f)
     return embeddings, ids

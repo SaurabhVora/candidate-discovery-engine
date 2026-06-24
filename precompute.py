@@ -91,8 +91,8 @@ def main():
     logger.info(f"Encoding complete in {elapsed:.1f}s. Shape: {embeddings.shape}")
 
     # Step 5: Save embeddings and IDs
-    logger.info(f"Saving embeddings to {EMBEDDINGS_FILE}")
-    np.save(EMBEDDINGS_FILE, embeddings)
+    logger.info(f"Saving embeddings to {EMBEDDINGS_FILE} as float16")
+    np.save(EMBEDDINGS_FILE, embeddings.astype(np.float16))
 
     logger.info(f"Saving candidate IDs to {IDS_FILE}")
     with open(IDS_FILE, "w", encoding="utf-8") as f:

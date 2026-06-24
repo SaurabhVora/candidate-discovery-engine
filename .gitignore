@@ -1,6 +1,14 @@
 .venv/
-data/
-models/
 __pycache__/
 *.pyc
 team_submission.csv
+
+# Ignore entire data/ and models/ directories by default
+data/*
+models/*
+
+# Whitelist exactly the files we want to track
+!data/candidate_embeddings.npy
+!data/candidate_ids.json
+!models/all-MiniLM-L6-v2/
+!models/all-MiniLM-L6-v2/**
