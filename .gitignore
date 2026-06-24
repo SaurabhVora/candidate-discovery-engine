@@ -1,7 +1,7 @@
 .venv/
 __pycache__/
 *.pyc
-team_submission.csv
+Saurabh_World.csv
 
 # Ignore entire data/ and models/ directories by default
 data/*
