@@ -84,6 +84,29 @@ python validate_submission.py
 
 ---
 
+## 🐳 Docker Sandbox (Reproducibility & Verification)
+We provide a self-contained Docker recipe to satisfy the Stage 3 sandbox/reproducibility requirement. 
+
+### 1. Build the Docker Image
+```bash
+docker build -t recruiter-engine .
+```
+
+### 2. Run the Ranking Script (Reproduce CSV)
+Mount your local candidate file to `/app/candidates.jsonl` in the container and output to `./submission.csv`:
+```bash
+docker run --rm -v "C:/path/to/candidates.jsonl:/app/candidates_input.jsonl" recruiter-engine python rank.py --candidates /app/candidates_input.jsonl --out /app/submission.csv
+```
+
+### 3. Run the Dashboard Sandbox
+To start the Streamlit web interface inside the Docker sandbox:
+```bash
+docker run -p 8501:8501 recruiter-engine
+```
+Open `http://localhost:8501` to view.
+
+---
+
 ## 🎨 Bonus: Interactive Streamlit Dashboard
 
 To showcase the power of the engine, we built a stunning, dark-mode web dashboard for recruiters. It allows you to paste *any* Job Description, tweak sliders for "Notice Period" or "Years of Experience", and instantly see the dynamic re-ranking of the 100,000 candidates alongside interactive Plotly analytics.
