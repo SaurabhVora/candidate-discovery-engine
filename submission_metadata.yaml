@@ -1,0 +1,74 @@
+# Redrob Hackathon — Submission Metadata Template
+#
+# Copy this file to your repo root as `submission_metadata.yaml` and fill it in.
+# The fields here should match what you submit via the portal at upload time.
+# Stage 3 review uses this file to verify your portal metadata.
+
+# ============================================================================
+# Team identity
+# ============================================================================
+team_name: "Saurabh World"
+
+primary_contact:
+  name: "Saurabh Vora"
+  email: "saurabhvora27@gmail.com"
+  phone: "9974645560"
+
+team_members:
+  - name: "Saurabh Vora"
+    email: "saurabhvora27@gmail.com"
+    role: "AI/ML Engineer"          
+
+# ============================================================================
+# Code and reproducibility
+# ============================================================================
+github_repo: "https://github.com/SaurabhVora/candidate-discovery-engine"
+
+sandbox_link: "N/A (Streamlit Dashboard included in GitHub Repo for local execution)"
+# Note: If you deploy the Streamlit app to Streamlit Cloud / HuggingFace, put the link here!
+
+reproduce_command: "python rank.py --candidates ../dataset/[PUB] India_runs_data_and_ai_challenge/India_runs_data_and_ai_challenge/candidates.jsonl --out ./team_submission.csv"
+
+# ============================================================================
+# Compute environment
+# ============================================================================
+compute:
+  platform: "Local Windows Workstation"         
+  cpu_cores: 8                                  
+  ram_gb: 16                                    
+  python_version: "3.13"                      
+  os: "Windows 11"                              
+  uses_gpu_for_inference: false                 # ranking is purely CPU!
+  has_network_during_ranking: false             # No network during rank.py
+  pre_computation_required: true               
+  pre_computation_time_minutes: 54              # Generating 100K embeddings took ~54 mins
+
+# ============================================================================
+# AI tools declaration
+# ============================================================================
+ai_tools_used:
+  - "Gemini"
+  - "Google Antigravity IDE"
+
+ai_usage_summary: |
+  Used Gemini for architecture discussions ,Project architecture and Challenge Explaining, and Google Antigravity IDE for basic code completion, and assisting with writing the deterministic honeypot detection rules. The core ranking pipeline and behavioral signal integrations were build with help of AI and my Skills in Machine Learning and Data Science, but no candidate data was ever sent to external LLMs; all embeddings and scoring were executed locally.
+
+# ============================================================================
+# Approach summary
+# ============================================================================
+methodology_summary: |
+  Two-stage hybrid architecture:
+  1. Offline CPU Precomputation: Converts all 100K profiles into structured text and embeds them into 384-dimensional dense vectors using a local HuggingFace all-MiniLM-L6-v2 model.
+  2. Runtime CPU Ranking: A composite scoring engine blending 7 factors: Semantic Cosine Similarity (35%), Role Relevance (20%), Experience Gaussian Fit (15%), Redrob Behavioral Signals (15%), Core AI Skills (5%), Consulting Penalty (5%), and Career Stability (5%).
+  We also wrote 3 deterministic rules that successfully caught and filtered out 65 honeypots (impossible dates, 0-duration expert skills).
+  Runtime is ~66 seconds for 100K candidates on CPU.
+
+# ============================================================================
+# Declarations
+# ============================================================================
+declarations:
+  read_submission_spec: true        
+  code_is_original_work: true       
+  no_collusion: true                
+  honeypot_check_done: true         # YES! We found 65 honeypots
+  reproduction_tested: true         
