@@ -117,5 +117,3 @@ streamlit run app.py
 ```
 *(Available locally at `http://localhost:8501`)*
 
----
-*Built with ❤️ for the INDIA RUNS AI Hackathon.*
